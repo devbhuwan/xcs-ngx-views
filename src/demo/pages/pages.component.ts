@@ -4,7 +4,7 @@ import {Location} from '@angular/common';
 @Component({
   selector: 'xcs-pages',
   template: `
-      <router-outlet></router-outlet>
+    <xcs-layout></xcs-layout>
   `
 })
 export class PagesComponent implements OnInit {

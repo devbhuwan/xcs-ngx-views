@@ -1,4 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {LocalStorageResolver} from '../../shared/utils';
+import {MenuItem} from '../../shared/models';
 
 @Component({
   selector: 'xcs-create-view',
@@ -7,10 +9,13 @@ import {Component, OnInit} from '@angular/core';
 })
 export class CreateViewComponent implements OnInit {
 
+  @Input() productKey: string;
+  activeMenuItem: MenuItem;
+
   constructor() {
   }
 
   ngOnInit() {
+    this.activeMenuItem = LocalStorageResolver.resolveMenuItem(this.productKey);
   }
-
 }

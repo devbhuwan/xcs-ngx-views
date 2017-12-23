@@ -1,3 +1,13 @@
-<p>
-  item-view works!
-</p>
+<div>
+  <div class="row">
+    <div class="col col-xl-12 col-lg-12">
+      <div class="card mb-3">
+        <div class="card-header">{{activeMenuItem.label | translate}}</div>
+        <!-- Large modal -->
+        <div class="card-body">
+          <xcs-edit-view [entity]="entity$"></xcs-edit-view>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

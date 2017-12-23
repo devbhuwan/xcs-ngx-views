@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Entity, MenuItem} from '../../shared/models';
+import {LocalStorageResolver} from '../../shared/utils';
+import {EntityService} from '../services/entity.service';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'xcs-list-view',
@@ -7,9 +11,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListViewComponent implements OnInit {
 
-  constructor() { }
+  @Input() productKey: string;
+  activeMenuItem: MenuItem;
+  entities$: Observable<Entity[]> = Observable.of();
+  @Input() columns: string[];
+  @Input() mainColumn = 'id';
+
+  constructor(private entityService: EntityService) {
+  }
 
   ngOnInit() {
+    this.activeMenuItem = LocalStorageResolver.resolveMenuItem(this.productKey);
+    this.entities$ = this.entityService.findAll({key: ''});
+  }
+
+  keys(entity: any): string[] {
+    return Object.keys(entity);
   }
 
 }

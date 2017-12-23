@@ -1,1 +1,13 @@
-create
+<div>
+  <div class="row">
+    <div class="col col-xl-12 col-lg-12">
+      <div class="card mb-3">
+        <div class="card-header">{{activeMenuItem.label | translate}}</div>
+        <!-- Large modal -->
+        <div class="card-body">
+          <ng-content></ng-content>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

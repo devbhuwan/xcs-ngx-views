@@ -3,11 +3,16 @@ import {NgModule} from '@angular/core';
 
 import {EntityCreateComponent} from './create/create.component';
 import {EntityListComponent} from './list/list.component';
+import {EntityViewComponent} from './view/view.component';
 
 const routes: Routes = [
   {
     path: 'create',
     component: EntityCreateComponent
+  },
+  {
+    path: ':id',
+    component: EntityViewComponent
   },
   {
     path: '',

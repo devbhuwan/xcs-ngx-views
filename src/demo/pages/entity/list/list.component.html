@@ -1,5 +1,6 @@
-<div class="row">
-  <div class="col-xxxl-12 col-md-12">
-    <xcs-list-view></xcs-list-view>
-  </div>
-</div>
+<xcs-list-view
+  [columns]="['firstName', 'lastName', 'phoneNumber', 'dateOfBirth', 'country']"
+  mainColumn="firstName"
+  productKey="Entity">
+
+</xcs-list-view>
