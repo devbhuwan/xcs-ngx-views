@@ -30,5 +30,6 @@
   "View All": "View All",
   "ApplicationName": "XCS-Views",
   "Entity": "Entity Features",
-  "id": "Id"
+  "id": "Id",
+  "entryForm": "Entry Form"
 }

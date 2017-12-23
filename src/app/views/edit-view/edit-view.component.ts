@@ -19,10 +19,11 @@ export class EditViewComponent implements OnInit {
 
   ngOnInit() {
     this.entity.subscribe(_entity => {
-      this.editForm.submission.data = _entity;
-      this.editForm.onRefresh({
-        property: FormioRefreshType.SUBMISSION, value: this.editForm.submission
-      });
+      // this.editForm.submission.data = _entity;
+      // this.editForm.onRefresh({
+      //   property: FormioRefreshType.SUBMISSION, value: this.editForm.submission
+      // });
+
     });
   }
 

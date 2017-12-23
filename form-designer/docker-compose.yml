@@ -5,6 +5,8 @@ services:
     container_name: "formIoDBMongo"
     ports:
       - 27017:27017
+    volumes:
+      - ./data:/data/db
   formio:
     image: xcloudschool/formio
     container_name: "formIoAPIPlatform"
