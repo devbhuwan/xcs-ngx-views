@@ -2,7 +2,7 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {FormioComponent} from 'angular-formio';
 import {Entity} from '../../shared/models';
 import {Observable} from 'rxjs/Observable';
-import {FormioRefreshType} from "../../shared/utils/formio-helper";
+import {FormioRefreshType} from '../../shared/utils/formio-helper';
 
 @Component({
   selector: 'xcs-edit-view',
