@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {FormioHelper, LocalStorageResolver} from '../../shared/utils';
+import {LocalStorageResolver} from '../../shared/utils';
 import {MenuItem} from '../../shared/models';
 import {FormService} from '../services';
 import {FormioComponent} from 'angular-formio';
@@ -32,6 +32,5 @@ export class CreateViewComponent implements OnInit {
   }
 
   saveEntity(submission: any) {
-    console.log(FormioHelper.extractOnlyPayload(submission));
   }
 }
