@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Entity, MenuItem} from '../../shared/models';
 import {LocalStorageResolver} from '../../shared/utils';
-import {EntityService} from '../services/entity.service';
+import {EntityService} from '../services';
 import {Observable} from 'rxjs/Observable';
 
 @Component({
@@ -23,10 +23,6 @@ export class ListViewComponent implements OnInit {
   ngOnInit() {
     this.activeMenuItem = LocalStorageResolver.resolveMenuItem(this.productKey);
     this.entities$ = this.entityService.findAll({key: ''});
-  }
-
-  keys(entity: any): string[] {
-    return Object.keys(entity);
   }
 
 }

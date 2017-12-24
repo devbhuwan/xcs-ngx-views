@@ -1,7 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormioComponent} from 'angular-formio';
-import {FormioHelper} from '../../../../app/shared/utils/formio-helper';
-import {HttpClient} from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'xcs-entity-create',
@@ -10,20 +7,11 @@ import {HttpClient} from '@angular/common/http';
 })
 export class EntityCreateComponent implements OnInit {
 
-  @ViewChild('entityForm') entityForm: FormioComponent;
-  entityFormJson: any;
 
-  constructor(private http: HttpClient) {
+  constructor() {
   }
 
   ngOnInit() {
-    this.http.get(`/assets/forms/entryForm.json`)
-      .subscribe(value => this.entityFormJson = value);
-  }
-
-
-  saveEntity(submission: any) {
-    console.log(FormioHelper.extractOnlyPayload(submission));
   }
 
 }

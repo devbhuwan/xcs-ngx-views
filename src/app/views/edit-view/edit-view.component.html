@@ -1,1 +1,5 @@
-<formio #entityForm src="/assets/forms/entryForm.json"></formio>
+<formio #editEntityForm
+        [form]="editFormJson"
+        (render)="refreshPage()"
+>
+</formio>

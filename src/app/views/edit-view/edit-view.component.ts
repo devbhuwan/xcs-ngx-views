@@ -1,8 +1,9 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {FormioComponent} from 'angular-formio';
-import {Entity} from '../../shared/models';
+import {Entity, MenuItem} from '../../shared/models';
 import {Observable} from 'rxjs/Observable';
-import {FormioRefreshType} from '../../shared/utils/formio-helper';
+import {FormioRefreshType, LocalStorageResolver} from '../../shared/utils';
+import {FormService} from '../services';
 
 @Component({
   selector: 'xcs-edit-view',
@@ -11,20 +12,26 @@ import {FormioRefreshType} from '../../shared/utils/formio-helper';
 })
 export class EditViewComponent implements OnInit {
 
-  @ViewChild('editForm') editForm: FormioComponent;
+  @Input() productKey: string;
   @Input() entity: Observable<Entity>;
+  @ViewChild('editEntityForm') editEntityForm: FormioComponent;
+  activeMenuItem: MenuItem;
+  editFormJson: any;
 
-  constructor() {
+  constructor(private formService: FormService) {
   }
 
   ngOnInit() {
+    this.activeMenuItem = LocalStorageResolver.resolveMenuItem(this.productKey);
     this.entity.subscribe(_entity => {
-      // this.editForm.submission.data = _entity;
-      // this.editForm.onRefresh({
-      //   property: FormioRefreshType.SUBMISSION, value: this.editForm.submission
-      // });
-
+      this.formService.loadForm('entityForm.json').subscribe(value => {
+        this.editFormJson = value;
+        this.editEntityForm.submission.data = _entity;
+      });
     });
   }
 
+  refreshPage() {
+    this.editEntityForm.onRefresh({property: FormioRefreshType.SUBMISSION, value: this.editEntityForm.submission});
+  }
 }

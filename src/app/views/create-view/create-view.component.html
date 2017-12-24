@@ -5,7 +5,8 @@
         <div class="card-header">{{activeMenuItem.label | translate}}</div>
         <!-- Large modal -->
         <div class="card-body">
-          <ng-content></ng-content>
+          <formio #createEntityForm [form]="createFormJson" (submit)="saveEntity($event)"
+          ></formio>
         </div>
       </div>
     </div>

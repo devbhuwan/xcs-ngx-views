@@ -8,7 +8,7 @@ import {FormioModule} from 'angular-formio';
 import {RouterModule} from '@angular/router';
 import {SharedModule} from '../shared';
 import {TranslateModule} from '@ngx-translate/core';
-import {EntityService} from './services/entity.service';
+import {EntityService, FormService} from './services';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 const COMPONENTS = [
@@ -29,7 +29,7 @@ const COMPONENTS = [
   ],
   declarations: [...COMPONENTS],
   exports: [...COMPONENTS],
-  providers: [EntityService]
+  providers: [EntityService, FormService]
 })
 export class ViewsModule {
 }
