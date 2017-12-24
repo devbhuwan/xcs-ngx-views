@@ -11,12 +11,17 @@ import {FormioComponent} from 'angular-formio';
 })
 export class CreateViewComponent implements OnInit {
 
-  @ViewChild('createEntityForm') entityForm: FormioComponent;
   @Input() productKey: string;
   activeMenuItem: MenuItem;
   createFormJson: any;
 
   constructor(private formService: FormService) {
+  }
+
+  @ViewChild('createEntityForm') private _createEntityForm: FormioComponent;
+
+  get createEntityForm(): FormioComponent {
+    return this._createEntityForm;
   }
 
   ngOnInit() {
@@ -25,7 +30,6 @@ export class CreateViewComponent implements OnInit {
       this.createFormJson = value;
     });
   }
-
 
   saveEntity(submission: any) {
     console.log(FormioHelper.extractOnlyPayload(submission));

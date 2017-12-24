@@ -14,24 +14,29 @@ export class EditViewComponent implements OnInit {
 
   @Input() productKey: string;
   @Input() entity: Observable<Entity>;
-  @ViewChild('editEntityForm') editEntityForm: FormioComponent;
   activeMenuItem: MenuItem;
   editFormJson: any;
 
   constructor(private formService: FormService) {
   }
 
+  @ViewChild('editEntityForm') private _editEntityForm: FormioComponent;
+
+  get editEntityForm(): FormioComponent {
+    return this._editEntityForm;
+  }
+
   ngOnInit() {
     this.activeMenuItem = LocalStorageResolver.resolveMenuItem(this.productKey);
     this.entity.subscribe(_entity => {
-      this.formService.loadForm('entityForm.json').subscribe(value => {
+      this.formService.loadForm('createEntityForm.json').subscribe(value => {
         this.editFormJson = value;
-        this.editEntityForm.submission.data = _entity;
+        this._editEntityForm.submission.data = _entity;
       });
     });
   }
 
   refreshPage() {
-    this.editEntityForm.onRefresh({property: FormioRefreshType.SUBMISSION, value: this.editEntityForm.submission});
+    this._editEntityForm.onRefresh({property: FormioRefreshType.SUBMISSION, value: this._editEntityForm.submission});
   }
 }
