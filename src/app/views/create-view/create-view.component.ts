@@ -1,8 +1,8 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {LocalStorageResolver} from '../../shared/utils';
 import {MenuItem} from '../../shared/models';
-import {FormService} from '../services';
 import {FormioComponent} from 'angular-formio';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'xcs-create-view',
@@ -14,8 +14,9 @@ export class CreateViewComponent implements OnInit {
   @Input() productKey: string;
   activeMenuItem: MenuItem;
   createFormJson: any;
+  @Input() form: Observable<any>;
 
-  constructor(private formService: FormService) {
+  constructor() {
   }
 
   @ViewChild('createEntityForm') private _createEntityForm: FormioComponent;
@@ -26,11 +27,7 @@ export class CreateViewComponent implements OnInit {
 
   ngOnInit() {
     this.activeMenuItem = LocalStorageResolver.resolveMenuItem(this.productKey);
-    this.formService.loadForm('entityForm.json').subscribe(value => {
-      this.createFormJson = value;
-    });
+    this.form.subscribe(value => this.createFormJson = value);
   }
 
-  saveEntity(submission: any) {
-  }
 }
