@@ -29,10 +29,11 @@ fdescribe('FormService', () => {
     httpMock.expectNone({});
   });
 
-  describe('when fetching all stuff', () => {
-    it('should make a GET request', async(() => {
+  describe('when loading form', () => {
+    it('should make a GET request to load form', async(() => {
       formService.loadForm(`entryForm.json`);
-      const req = httpMock.expectOne({method: 'GET', url: `./assets/forms/entryForm.json`});
+      const req = httpMock.expectOne('/assets/forms/entryForm.json');
+      expect(req.request.method).toBe('GET');
       req.flush([]);
     }));
   });

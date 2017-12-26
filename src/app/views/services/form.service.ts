@@ -9,6 +9,6 @@ export class FormService {
   }
 
   loadForm(formPath: string): Observable<any> {
-    return this.http.get(`./assets/forms/${formPath}`);
+    return this.http.get(`/assets/forms/${formPath}`);
   }
 }
