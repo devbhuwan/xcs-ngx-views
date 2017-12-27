@@ -3,11 +3,8 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {CreateViewComponent} from './create-view.component';
 import {TranslateFakeLoader, TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
 import {FormioModule} from 'angular-formio';
-import {DebugElement, Injector} from "@angular/core";
-import {FormioHelper} from "../../shared/utils";
-
-const translations: any = {'CARDS_TITLE': 'This is a test'};
-
+import {DebugElement, Injector} from '@angular/core';
+import {FormioHelper} from '../../shared/utils';
 
 describe('CreateViewComponent', () => {
   let component: CreateViewComponent;
