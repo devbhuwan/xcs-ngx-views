@@ -30,4 +30,7 @@ export class CreateViewComponent implements OnInit {
     this.form.subscribe(value => this.createFormJson = value);
   }
 
+  updateSelectComponent(name: string, values: any) {
+  }
+
 }
