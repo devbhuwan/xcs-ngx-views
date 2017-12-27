@@ -21,11 +21,11 @@ describe('FormService', () => {
   });
 
   afterEach(() => {
-    // httpMock.verify();
+    httpMock.verify();
   });
 
 
-  it('should not immediately connect to the server', () => {
+  it('should fetch form in json from /assets/forms by appending formPath parameter', () => {
     const form: any = {title: 'Hello'};
     let formResponse: any;
     formService.loadForm(`entryForm.json`).subscribe(value => formResponse = value);
