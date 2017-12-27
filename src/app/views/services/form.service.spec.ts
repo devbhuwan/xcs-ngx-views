@@ -27,7 +27,7 @@ describe('FormService', () => {
 
   it('should fetch form in json from /assets/forms by appending formPath parameter', () => {
     const form: any = {title: 'Hello'};
-    let formResponse: any;
+    let formResponse: any = {};
     formService.loadForm(`entryForm.json`).subscribe(value => formResponse = value);
     httpMock.expectOne({url: '/assets/forms/entryForm.json', method: 'GET'}).flush(form);
     expect(formResponse).toBe(form);
