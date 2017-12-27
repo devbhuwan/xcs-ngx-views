@@ -6,7 +6,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {FormioAppConfig} from "angular-formio";
+import {FormioHelper} from '../app/shared/utils';
 
 // AoT requires an exported function for factories
 export function createTranslateLoader(http: HttpClient) {
@@ -33,13 +33,7 @@ export function createTranslateLoader(http: HttpClient) {
     }),
   ],
   providers: [
-    {
-      provide: FormioAppConfig, useValue: {
-        appUrl: 'http://localhost:4200',
-        apiUrl: 'http://localhost:4200',
-        formOnly: false
-      }
-    }
+    FormioHelper.localTypeFormioConfigProvider()
   ],
   bootstrap: [AppComponent]
 })

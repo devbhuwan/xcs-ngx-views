@@ -2,8 +2,9 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {CreateViewComponent} from './create-view.component';
 import {TranslateFakeLoader, TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
-import {FormioAppConfig, FormioModule} from 'angular-formio';
+import {FormioModule} from 'angular-formio';
 import {DebugElement, Injector} from "@angular/core";
+import {FormioHelper} from "../../shared/utils";
 
 const translations: any = {'CARDS_TITLE': 'This is a test'};
 
@@ -24,15 +25,7 @@ describe('CreateViewComponent', () => {
         })
       ],
       declarations: [CreateViewComponent],
-      providers: [
-        {
-          provide: FormioAppConfig, useValue: {
-            appUrl: 'http://localhost:4200',
-            apiUrl: 'http://localhost:4200',
-            formOnly: false
-          }
-        }
-      ]
+      providers: [FormioHelper.localTypeFormioConfigProvider()]
     });
     fixture = TestBed.createComponent(CreateViewComponent);
     component = fixture.componentInstance;
