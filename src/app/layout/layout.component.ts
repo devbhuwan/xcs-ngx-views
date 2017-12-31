@@ -1,12 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {MenuItem} from '../shared/models';
 
 @Component({
-    selector: 'xcs-layout',
-    templateUrl: './layout.component.html',
-    styleUrls: ['./layout.component.scss']
+  selector: 'xcs-layout',
+  templateUrl: './layout.component.html',
+  styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
-    constructor() {}
+  @Input() menuItems: Observable<MenuItem[]>;
 
-    ngOnInit() {}
+  constructor() {
+  }
+
+  ngOnInit() {
+  }
 }

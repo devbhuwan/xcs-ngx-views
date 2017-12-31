@@ -1,6 +1,6 @@
+import {Title} from './title';
+
 export interface MenuItem {
-  id: string;
-  link: string;
-  icon: string;
-  label: string;
+  routerLink: string;
+  title: Title;
 }
