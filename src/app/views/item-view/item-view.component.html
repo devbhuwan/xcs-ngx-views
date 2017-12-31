@@ -1,13 +1,16 @@
-<div>
-  <div class="row">
-    <div class="col col-xl-12 col-lg-12">
-      <div class="card mb-3">
-        <div class="card-header">{{activeMenuItem.label | translate}}</div>
-        <!-- Large modal -->
-        <div class="card-body">
-          <xcs-edit-view [entity]="entity$"></xcs-edit-view>
+<xcs-view-container>
+  <xcs-widget-view [viewTitle]="viewTitle">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div *ngFor="let fKey of columnFirstKeys">
+          <xcs-item-cell [key]="fKey" [value]="entity[fKey]"></xcs-item-cell>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div *ngFor="let sKey of columnSecondKeys">
+          <xcs-item-cell [key]="sKey" [value]="entity[sKey]"></xcs-item-cell>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </xcs-widget-view>
+</xcs-view-container>

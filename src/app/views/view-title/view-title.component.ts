@@ -9,6 +9,7 @@ import {Title} from '../../shared/models';
 export class ViewTitleComponent implements OnInit {
   @Input() title: Title;
   @Input() productKey: string;
+  @Input() showCreateButton = false;
 
   constructor() {
   }
