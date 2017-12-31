@@ -1,28 +1,28 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Entity, MenuItem} from '../../shared/models';
-import {LocalStorageResolver} from '../../shared/utils';
+import {AfterContentInit, Component, ContentChildren, OnInit, QueryList} from '@angular/core';
+import {Entity} from '../../shared/models';
 import {EntityService} from '../services';
-import {Observable} from 'rxjs/Observable';
+import {XcsNgxDatatableColumnComponent} from './xcs-ngx-datatable-column/xcs-ngx-datatable-column.component';
+import {AbstractViewComponent} from '../abstract-view-component';
 
 @Component({
   selector: 'xcs-list-view',
   templateUrl: './list-view.component.html',
   styleUrls: ['./list-view.component.scss']
 })
-export class ListViewComponent implements OnInit {
+export class ListViewComponent extends AbstractViewComponent implements OnInit, AfterContentInit {
 
-  @Input() productKey: string;
-  activeMenuItem: MenuItem;
-  entities$: Observable<Entity[]> = Observable.of();
-  @Input() columns: string[];
-  @Input() mainColumn = 'id';
+  @ContentChildren(XcsNgxDatatableColumnComponent) ngxColumns: QueryList<XcsNgxDatatableColumnComponent>;
+  rows: Entity[];
 
   constructor(private entityService: EntityService) {
+    super();
   }
 
   ngOnInit() {
-    this.activeMenuItem = LocalStorageResolver.resolveMenuItem(this.productKey);
-    this.entities$ = this.entityService.findAll({key: ''});
+  }
+
+  ngAfterContentInit() {
+    this.entityService.findAll({key: ''}).subscribe(value => this.rows = value);
   }
 
 }

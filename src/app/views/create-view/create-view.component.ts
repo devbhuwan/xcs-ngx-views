@@ -1,36 +1,34 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {LocalStorageResolver} from '../../shared/utils';
-import {MenuItem} from '../../shared/models';
-import {FormioComponent} from 'angular-formio';
-import {Observable} from 'rxjs/Observable';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AbstractViewComponent} from '../abstract-view-component';
+import {FormService} from '../services';
+import {Entity} from "../../shared/models";
 
 @Component({
   selector: 'xcs-create-view',
   templateUrl: './create-view.component.html',
   styleUrls: ['./create-view.component.scss']
 })
-export class CreateViewComponent implements OnInit {
+export class CreateViewComponent extends AbstractViewComponent implements OnInit {
 
-  @Input() productKey: string;
-  activeMenuItem: MenuItem;
   createFormJson: any;
-  @Input() form: Observable<any>;
+  @Input() formSrc: string;
+  @Output() submitted: EventEmitter<Entity> = new EventEmitter<Entity>();
 
-  constructor() {
-  }
-
-  @ViewChild('createEntityForm') private _createEntityForm: FormioComponent;
-
-  get createEntityForm(): FormioComponent {
-    return this._createEntityForm;
+  constructor(private formService: FormService) {
+    super();
   }
 
   ngOnInit() {
-    this.activeMenuItem = LocalStorageResolver.resolveMenuItem(this.productKey);
-    this.form.subscribe(value => this.createFormJson = value);
+    if (this.formSrc) {
+      this.formService.loadForm(this.formSrc).subscribe(value => this.createFormJson = value);
+    }
   }
 
   updateSelectComponent(name: string, values: any) {
+  }
+
+  createFormSubmit(payload: Entity) {
+    this.submitted.emit(payload);
   }
 
 }

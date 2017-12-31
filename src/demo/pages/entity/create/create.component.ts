@@ -1,8 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {CreateViewComponent} from '../../../../app/views/create-view/create-view.component';
-import {FormioHelper} from '../../../../app/shared/utils';
-import {FormService} from '../../../../app/views/services';
-import {Observable} from 'rxjs/Observable';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'xcs-entity-create',
@@ -11,17 +7,11 @@ import {Observable} from 'rxjs/Observable';
 })
 export class EntityCreateComponent implements OnInit {
 
-  @ViewChild('createView') createView: CreateViewComponent;
-  form$: Observable<any>;
-
-  constructor(private formService: FormService) {
+  constructor() {
   }
 
   ngOnInit() {
-    this.form$ = this.formService.loadForm(`entryForm.json`);
-    this.createView.createEntityForm.submit.subscribe(submission => {
-      console.log(FormioHelper.extractOnlyPayload(submission));
-    });
+
   }
 
 

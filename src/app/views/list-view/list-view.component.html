@@ -1,35 +1,27 @@
-<div>
-  <div class="row">
-    <div class="col col-xl-12 col-lg-12">
-      <div class="card mb-3">
-        <div class="card-header">
-          <i class="fa {{activeMenuItem.icon}}"></i>
-          {{activeMenuItem.label | translate}}
-          <a class="btn btn-primary btn-sm" routerLink="create">
-            <i class="fa fa-plus-square"></i> {{'Create' | translate}}</a>
-        </div>
-        <div class="card-body table-responsive">
-          <table class="table table-hover table-striped table-sm" *ngIf="columns">
-            <thead>
-            <tr>
-              <th *ngFor="let column of columns">{{column | translate}}</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let entity of entities$ | async">
-              <td *ngFor="let key of columns">
-                <a *ngIf="key === mainColumn" routerLink="{{entity.id}}">
-                  {{entity[key]}}
-                </a>
-                <span *ngIf="key != mainColumn">
-                  {{entity[key]}}
-                </span>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<xcs-view-container>
+  <xcs-widget-view [viewTitle]="viewTitle" class="table-responsive">
+    <ngx-datatable
+      style="height: 60vh"
+      class="table table-hover table-striped table-sm"
+      [columnMode]="'force'"
+      [headerHeight]="40"
+      [footerHeight]="45"
+      [rowHeight]="35"
+      [scrollbarV]="35"
+      [rows]="rows"
+      [cssClasses]="{
+            sortAscending: 'fa fa-sort-up',
+            sortDescending: 'fa fa-sort-down',
+            pagerLeftArrow: 'fa  fa-angle-left',
+            pagerRightArrow: 'fa fa-angle-right',
+            pagerPrevious: 'fa fa-angle-double-left',
+            pagerNext: 'fa fa-angle-double-right'
+          }">
+      <ngx-datatable-column *ngFor="let ngxColumn of ngxColumns"
+                            [name]="ngxColumn.name"
+                            [cellTemplate]="ngxColumn.cellTemplate">
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </xcs-widget-view>
+</xcs-view-container>
+<ng-content></ng-content>

@@ -1,6 +1,13 @@
-<xcs-list-view
-  [columns]="['firstName', 'lastName', 'phoneNumber', 'dateOfBirth', 'country']"
-  mainColumn="firstName"
-  productKey="Entity">
-
+<xcs-list-view>
+  <xcs-view-title
+    [title]="{
+    icon: 'fa fa-dashboard',
+    label: 'entity.list'}" [productKey]="'Entity'">
+  </xcs-view-title>
+  <xcs-ngx-datatable-column [name]="'firstName'">
+    <ng-template let-row="row" let-value="value">
+      <a [routerLink]="row['id']">{{value}}</a>
+    </ng-template>
+  </xcs-ngx-datatable-column>
+  <xcs-ngx-datatable-column [name]="'lastName'"></xcs-ngx-datatable-column>
 </xcs-list-view>

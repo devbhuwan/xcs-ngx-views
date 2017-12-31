@@ -13,7 +13,7 @@ export class EntityService {
     return this.http.get<Entity[]>(`/assets/api/entity/index.json`);
   }
 
-  findOne(id: string): Observable<Entity> {
+  findOne(id: string, entityQuery: EntityQuery): Observable<Entity> {
     return this.http.get<Entity>(`/assets/api/entity/findOne.json`);
   }
 

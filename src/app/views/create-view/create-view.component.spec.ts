@@ -1,36 +1,47 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {CreateViewComponent} from './create-view.component';
-import {TranslateFakeLoader, TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
+import {TranslateFakeLoader, TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {FormioModule} from 'angular-formio';
-import {DebugElement, Injector} from '@angular/core';
 import {FormioHelper} from '../../shared/utils';
+import {Observable} from 'rxjs/Observable';
+
+import data from './entryForm.json';
+
+
+
+let fixture: ComponentFixture<CreateViewComponent>;
+let component: CreateViewComponent;
 
 describe('CreateViewComponent', () => {
-  let component: CreateViewComponent;
-  let fixture: ComponentFixture<CreateViewComponent>;
-  let de: DebugElement;
-  let el: HTMLElement;
-  let translate: TranslateService;
-  let injector: Injector;
-  beforeEach(() => {
-    injector = TestBed.configureTestingModule({
-      imports: [
-        FormioModule,
-        TranslateModule.forRoot({
-          loader: {provide: TranslateLoader, useClass: TranslateFakeLoader}
-        })
-      ],
-      declarations: [CreateViewComponent],
-      providers: [FormioHelper.localTypeFormioConfigProvider()]
-    });
-    fixture = TestBed.createComponent(CreateViewComponent);
-    component = fixture.componentInstance;
-    translate = injector.get(TranslateService);
-    de = fixture.debugElement;
-    el = de.nativeElement;
+  beforeEach(async(setupTest));
+  it('given formInJson when update select component value then should change select component values', () => {
+    component.createFormJson = Observable.of(data);
+    fixture.detectChanges();
+    fixture.whenRenderingDone()
+      .then(value => {
+        const input = fixture.debugElement.nativeElement.querySelector('input[name="data[firstName]"]');
+        expect(input.name).toBe('data[firstName]');
+      });
   });
 
-  it('given formInJson when update select component value then should change select component values', function () {
-  });
 });
+
+function setupTest() {
+  return TestBed.configureTestingModule({
+    imports: [
+      FormioModule,
+      TranslateModule.forRoot({
+        loader: {provide: TranslateLoader, useClass: TranslateFakeLoader}
+      })
+    ],
+    declarations: [CreateViewComponent],
+    providers: [FormioHelper.localTypeFormioConfigProvider()]
+  })
+    .compileComponents()
+    .then(() => {
+      fixture = TestBed.createComponent(CreateViewComponent);
+      component = fixture.componentInstance;
+    });
+}

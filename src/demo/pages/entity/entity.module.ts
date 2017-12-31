@@ -6,6 +6,7 @@ import {EntityListComponent} from './list/list.component';
 import {ViewsModule} from '../../../app';
 import {FormioModule} from 'angular-formio';
 import {EntityViewComponent} from './view/view.component';
+import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 
 const COMPONENTS = [EntityCreateComponent, EntityListComponent, EntityViewComponent];
 
@@ -13,7 +14,8 @@ const COMPONENTS = [EntityCreateComponent, EntityListComponent, EntityViewCompon
   imports: [
     EntityRoutingModule,
     FormioModule,
-    ViewsModule
+    ViewsModule,
+    NgxDatatableModule
   ],
   declarations: [
     ...COMPONENTS

@@ -10,12 +10,21 @@ import {SharedModule} from '../shared';
 import {TranslateModule} from '@ngx-translate/core';
 import {EntityService, FormService} from './services';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {ViewContainerComponent} from './view-container/view-container.component';
+import {WidgetViewComponent} from './widget-view/widget-view.component';
+import {NgxDatatableModule} from "@swimlane/ngx-datatable";
+import {XcsNgxDatatableColumnComponent} from './list-view/xcs-ngx-datatable-column/xcs-ngx-datatable-column.component';
+import {ViewTitleComponent} from './view-title/view-title.component';
 
 const COMPONENTS = [
   CreateViewComponent,
   EditViewComponent,
   ListViewComponent,
-  ItemViewComponent
+  ItemViewComponent,
+  ViewContainerComponent,
+  WidgetViewComponent,
+  XcsNgxDatatableColumnComponent,
+  ViewTitleComponent
 ];
 
 @NgModule({
@@ -25,7 +34,8 @@ const COMPONENTS = [
     RouterModule,
     TranslateModule,
     SharedModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    NgxDatatableModule
   ],
   declarations: [...COMPONENTS],
   exports: [...COMPONENTS],
