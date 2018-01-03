@@ -5,6 +5,9 @@ import {TranslateFakeLoader, TranslateLoader, TranslateModule} from '@ngx-transl
 import {FormioModule} from 'angular-formio';
 import {FormioHelper} from '../../shared/utils';
 import {Observable} from 'rxjs/Observable';
+import {CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from '@angular/core';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {FormService} from '../services';
 
 let fixture: ComponentFixture<CreateViewComponent>;
 let component: CreateViewComponent;
@@ -27,12 +30,14 @@ function setupTest() {
   return TestBed.configureTestingModule({
     imports: [
       FormioModule,
+      HttpClientTestingModule,
       TranslateModule.forRoot({
         loader: {provide: TranslateLoader, useClass: TranslateFakeLoader}
       })
     ],
     declarations: [CreateViewComponent],
-    providers: [FormioHelper.localTypeFormioConfigProvider()]
+    providers: [FormService, FormioHelper.localTypeFormioConfigProvider()],
+    schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
   })
     .compileComponents()
     .then(() => {
