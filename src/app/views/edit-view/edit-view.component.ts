@@ -27,7 +27,6 @@ export class EditViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activeMenuItem = LocalStorageResolver.resolveMenuItem(this.productKey);
     this.entity.subscribe(_entity => {
       this.formService.loadForm('createEntityForm.json').subscribe(value => {
         this.editFormJson = value;
