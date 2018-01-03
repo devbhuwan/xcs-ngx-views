@@ -24,7 +24,6 @@ describe('CreateViewComponent', () => {
       const input = fixture.debugElement.nativeElement.querySelector('input[name="data[name]"]');
       expect(input.name).toBe('data[name]');
     });
-    expect(component).toBeTruthy();
   }));
 
 });

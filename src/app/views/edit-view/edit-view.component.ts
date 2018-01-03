@@ -1,41 +1,38 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {FormioComponent} from 'angular-formio';
 import {Entity, MenuItem} from '../../shared/models';
 import {Observable} from 'rxjs/Observable';
-import {FormioRefreshType, LocalStorageResolver} from '../../shared/utils';
+import {FormioHelper, FormioRefreshType, LocalStorageResolver} from '../../shared/utils';
 import {FormService} from '../services';
+import {AbstractViewComponent} from "../abstract-view-component";
 
 @Component({
   selector: 'xcs-edit-view',
   templateUrl: './edit-view.component.html',
   styleUrls: ['./edit-view.component.scss']
 })
-export class EditViewComponent implements OnInit {
-
-  @Input() productKey: string;
-  @Input() entity: Observable<Entity>;
-  activeMenuItem: MenuItem;
-  editFormJson: any;
+export class EditViewComponent extends AbstractViewComponent implements OnInit {
+  formJson: any;
+  @Input() formSrc: string;
+  @Output() submitted: EventEmitter<Entity> = new EventEmitter<Entity>();
+  @ViewChild('form') form: FormioComponent;
 
   constructor(private formService: FormService) {
-  }
-
-  @ViewChild('editEntityForm') private _editEntityForm: FormioComponent;
-
-  get editEntityForm(): FormioComponent {
-    return this._editEntityForm;
+    super();
   }
 
   ngOnInit() {
-    this.entity.subscribe(_entity => {
-      this.formService.loadForm('createEntityForm.json').subscribe(value => {
-        this.editFormJson = value;
-        this._editEntityForm.submission.data = _entity;
+    if (this.formSrc) {
+      this.formService.loadForm(this.formSrc).subscribe(value => this.formJson = value);
+      this.form.submit.subscribe(submission => {
+        this.submitted.emit(FormioHelper.extractOnlyPayload(submission));
+      }, error => {
+        console.log(error);
       });
-    });
+    }
   }
 
-  refreshPage() {
-    this._editEntityForm.onRefresh({property: FormioRefreshType.SUBMISSION, value: this._editEntityForm.submission});
+  loadPayload(payload: any) {
+    this.form.onRefresh({property: FormioRefreshType.SUBMISSION, value: {data: payload}});
   }
 }
