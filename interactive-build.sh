@@ -2,7 +2,7 @@
 # Bash Menu Script Example
 
 PS3='Please enter your choice: '
-options=("Normal Build" "Normal build and publish" "Run App" "Run Test" "Run Test And Debug" "Quit")
+options=("Normal Build" "Normal build and publish" "Run App" "Run Test" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -26,12 +26,6 @@ do
             printf 'Matching File Name : '
             read fileName
             npm run test ${fileName}
-            ;;
-        "Run Test And Debug")
-            echo "you chose 'Run Test And Debug'"
-            printf 'Matching File Name : '
-            read fileName
-            npm run test:debug ${fileName}
             ;;
         "Quit")
             break
