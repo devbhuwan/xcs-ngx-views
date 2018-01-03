@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Title} from '../../shared/models';
+import {Title} from '../../models/index';
 
 @Component({
   selector: 'xcs-view-title',

@@ -12,10 +12,9 @@ import {EntityService, FormService} from './services';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ViewContainerComponent} from './view-container/view-container.component';
 import {WidgetViewComponent} from './widget-view/widget-view.component';
-import {NgxDatatableModule} from "@swimlane/ngx-datatable";
+import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import {XcsNgxDatatableColumnComponent} from './list-view/xcs-ngx-datatable-column/xcs-ngx-datatable-column.component';
-import {ViewTitleComponent} from './view-title/view-title.component';
-import { ItemCellComponent } from './item-view/item-cell/item-cell.component';
+import {ItemCellComponent} from './item-view/item-cell/item-cell.component';
 
 const COMPONENTS = [
   CreateViewComponent,
@@ -24,8 +23,7 @@ const COMPONENTS = [
   ItemViewComponent,
   ViewContainerComponent,
   WidgetViewComponent,
-  XcsNgxDatatableColumnComponent,
-  ViewTitleComponent
+  XcsNgxDatatableColumnComponent
 ];
 
 @NgModule({

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ViewTitleComponent} from '../view-title/view-title.component';
+import {ViewTitleComponent} from '../../shared/components/view-title/view-title.component';
 
 @Component({
   selector: 'xcs-widget-view',

@@ -1,8 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {FormioComponent} from 'angular-formio';
-import {Entity, MenuItem} from '../../shared/models';
-import {Observable} from 'rxjs/Observable';
-import {FormioHelper, FormioRefreshType, LocalStorageResolver} from '../../shared/utils';
+import {Entity} from '../../shared/models';
+import {FormioHelper, FormioRefreshType} from '../../shared/utils';
 import {FormService} from '../services';
 import {AbstractViewComponent} from "../abstract-view-component";
 
